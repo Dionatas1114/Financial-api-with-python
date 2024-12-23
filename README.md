@@ -75,7 +75,7 @@ PROD
 4. Inicie o servidor local:
     
          py -m venv venv
-         .\venv\Scripts\activate
+         .\venv\Scripts\activate   ou   source venv/Scripts/activate
          uvicorn app.main:app --reload
 
 5. Acesse a API em http://localhost:8000/
