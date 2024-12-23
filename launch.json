@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: FastAPI Debug",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/app/main.py", // Caminho para o arquivo principal da aplicação
+      "args": [
+        "run", // Argumentos para o Uvicorn ou outro servidor
+        "--host",
+        "127.0.0.1", // Endereço do servidor
+        "--port",
+        "8000", // Porta do servidor
+        "--reload" // Ativa o modo de recarga automática
+      ],
+      "console": "integratedTerminal", // Mostra a saída no terminal integrado
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}" // Certifique-se de que o Python sabe onde estão os módulos
+      },
+      "justMyCode": true
+    }
+  ]
+}
