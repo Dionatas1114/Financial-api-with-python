@@ -1,8 +1,13 @@
 from fastapi import APIRouter
 
+
 router = APIRouter()
 
-# Rota de autenticação (login, refresh de token, etc.)
+# Rotas de autenticação (login, refresh de token, etc.)
+@router.post("/signup")
+def signup():
+    return {"message": "Cadastro realizado com sucesso!"}
+
 @router.post("/login")
 def login():
     return {"message": "Login realizado com sucesso!"}

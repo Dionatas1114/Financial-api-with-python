@@ -19,4 +19,4 @@ class User(UserBase):
     # transactions: List[Transaction]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
