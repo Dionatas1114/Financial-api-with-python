@@ -1,26 +1,23 @@
-from fastapi import FastAPI, Depends, HTTPException
-# from sqlalchemy.orm import Session
-# import services
-# import models
-# import schemas
-# import database
+import uvicorn
+from fastapi import FastAPI
+import app.routes.auth as auth
 import app.routes.user as users
 
+# from .database.database import init_db
 app = FastAPI()
 
-# Incluindo as rotas do módulo de usuários
+# Inicializa o banco de dados
+# init_db()
+
+@app.get("/health-check") # Rota de health-check
+def health_check():
+    return {"status": "OK"}
+
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(users.router, prefix="/users", tags=["users"])
 
-# Cria as tabelas no banco de dados
-# models.Base.metadata.create_all(bind=database.engine)
-
-# Dependência para obter a sessão do banco de dados
-# def get_db():
-#     db = database.SessionLocal()
-#     try:
-#         yield db
-#     finally:
-#         db.close()
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8000)
 
 # @app.post("/users/", response_model=schemas.User)
 # def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):

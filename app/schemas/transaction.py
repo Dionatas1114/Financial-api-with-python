@@ -10,7 +10,7 @@
 #     user_id: int
 #
 #     class Config:
-#         orm_mode = True  # Permite usar objetos SQLAlchemy diretamente
+#         from_attributes = True  # Permite usar objetos SQLAlchemy diretamente
 #
 # # Pydantic model para resposta de transações (saída)
 # class TransactionResponse(TransactionCreate):
@@ -18,7 +18,7 @@
 #     timestamp: datetime
 #
 #     class Config:
-#         orm_mode = True  # Permite usar objetos SQLAlchemy diretamente
+#         from_attributes = True  # Permite usar objetos SQLAlchemy diretamente
 #
 # # Pydantic model para User (se necessário para resposta)
 # class UserResponse(BaseModel):
@@ -26,7 +26,7 @@
 #     name: str
 #
 #     class Config:
-#         orm_mode = True  # Permite usar objetos SQLAlchemy diretamente
+#         from_attributes = True  # Permite usar objetos SQLAlchemy diretamente
 #
 # # class TransactionBase(BaseModel):
 # #     amount: float
@@ -41,10 +41,10 @@
 # #     user_id: int
 # #
 # #     class Config:
-# #         orm_mode = True
+# #         from_attributes = True
 # #
 # # class TransactionList(BaseModel):
 # #     transactions: List[Transaction]
 # #
 # #     class Config:
-# #         orm_mode = True
+# #         from_attributes = True
