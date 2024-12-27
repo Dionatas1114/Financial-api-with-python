@@ -1,0 +1,24 @@
+# Usa a imagem oficial do Python como base
+FROM python:3.13.1
+
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y build-essential curl
+
+# Criar diretório de trabalho
+WORKDIR /app
+
+# Copiar arquivos do projeto
+COPY . .
+
+# Instalar dependências específicas para produção
+RUN pip install --no-cache-dir -r requirements-dev.txt
+
+# Baixar o script wait-for-it.sh para garantir que o banco de dados esteja disponível antes de iniciar o servidor
+RUN curl -sSL https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh -o /wait-for-it.sh && chmod +x /wait-for-it.sh
+
+# Expor a porta onde o FastAPI estará rodando (geralmente 8000)
+EXPOSE 8000
+
+# Rodar a aplicação FastAPI com Uvicorn em modo de desenvolvimento, aguardando o MySQL estar pronto epermitindo reload automático
+# uvicorn app:app --reload
+CMD ["/wait-for-it.sh", "mysql-db:3306", "--", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
